@@ -1,4 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.core.paginator import Paginator
+from django.core.paginator import EmptyPage
+from django.core.paginator import PageNotAnInteger
 from django.contrib import messages
 from django.views.generic import ListView, DetailView
 from .models import Item, OrderItem, Order
@@ -10,11 +13,13 @@ class HomeView(ListView):
     model = Item
     paginate_by = 1
     template_name = 'home.html'
-    context_object_name = 'items'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        print(context)
+        items = Item.objects.all()
+        paginator = Paginator(items, self.paginate_by)
+        page_range = paginator.page_range
+        context['page_range'] = page_range
         return context
 
 
