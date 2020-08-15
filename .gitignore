@@ -3,5 +3,4 @@ __init__.py
 settings.py
 migrations
 db.sqlite3
-orders
 package-lock.json
