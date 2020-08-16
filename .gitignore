@@ -1,6 +1,4 @@
 __pycache__
-__init__.py
-settings.py
-migrations
+secret.txt
 db.sqlite3
 package-lock.json

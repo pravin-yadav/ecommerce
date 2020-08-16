@@ -1,6 +1,5 @@
 {% extends "base.html" %}
 {% block title %} Welcome To Homepage {% endblock title %}
-
 {% block content %}
 <!--Carousel Wrapper-->
 <div id="carousel-example-1z" class="carousel slide carousel-fade pt-4" data-ride="carousel">
@@ -152,7 +151,7 @@
   <div class="container">
 
     <!--Navbar-->
-    <nav class="navbar navbar-expand-lg navbar-dark mdb-color lighten-3 mt-3 mb-5">
+    <nav class="navbar navbar-expand-lg navbar-dark mdb-color mt-3 mb-5">
 
       <!-- Navbar brand -->
       <span class="navbar-brand">Categories:</span>
@@ -186,11 +185,11 @@
         </ul>
         <!-- Links -->
 
-        <form class="form-inline">
+        {% comment %} <form class="form-inline">
           <div class="md-form my-0">
             <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
           </div>
-        </form>
+        </form> {% endcomment %}
       </div>
       <!-- Collapsible content -->
 
