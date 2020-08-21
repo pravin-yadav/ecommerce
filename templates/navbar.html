@@ -5,8 +5,8 @@
     <div class="container">
 
         <!-- Brand -->
-        <a class="navbar-brand waves-effect" href="/" target="_blank">
-            <strong class="blue-text">Home</strong>
+        <a class="navbar-brand waves-effect" href="/" >
+            <strong class="blue-text">Go-eshop</strong>
         </a>
 
         <!-- Collapse -->
@@ -27,10 +27,10 @@
             <ul class="navbar-nav nav-flex-icons">
                 {% if request.user.is_authenticated %}
                 <li class="nav-item">
-                    <a class="nav-link waves-effect">
-                        <span class="badge red z-depth-1 mr-1"> {{ request.user|cart_item_count }} </span>
+                    <a href={% url 'orders:order-summary' %} target="" class="nav-link waves-effect">
                         <i class="fas fa-shopping-cart"></i>
-                        <span class="clearfix d-sm-inline-block"> Cart </span>
+                        <span class="d-sm-inline-block"> Cart </span>
+                        <span style="vertical-align: super" class="badge red z-depth-1"> {{ request.user|cart_item_count }} </span>
                     </a>
                 </li>
                 <li class="nav-item">
