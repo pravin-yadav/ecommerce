@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %} Welcome To Homepage {% endblock title %}
+{% block head_title %} Go-eshop - Product {% endblock head_title %}
 
 {% block content %}
 
@@ -12,8 +12,8 @@
 
       <!--Grid column-->
       <div class="col-md-6 mb-4">
-
-        <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/14.jpg" class="img-fluid" alt="">
+        {% comment %} <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/14.jpg" class="img-fluid" alt=""> {% endcomment %}
+        <img src="{{object.thumbnail.url}}" class="img-fluid" style="height:600px; width:100%; object-fit:cover" alt="">
 
       </div>
       <!--Grid column-->

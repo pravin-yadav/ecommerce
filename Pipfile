@@ -6,12 +6,12 @@ verify_ssl = true
 [dev-packages]
 pylint = "*"
 autopep8 = "*"
-pylint-django = "*"
 
 [packages]
 django = "==3.0.7"
 django-allauth = "*"
 django-crispy-forms = "*"
+pillow = "*"
 
 [requires]
 python_version = "3.8"
