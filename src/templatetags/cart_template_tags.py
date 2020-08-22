@@ -1,5 +1,5 @@
 from django import template
-from orders.models import Order
+from src.models.orders import Order
 
 register = template.Library()
 

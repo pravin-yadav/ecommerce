@@ -4,7 +4,8 @@ from django.contrib.sites.models import Site
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import ObjectDoesNotExist
-from .models import Item, OrderItem, Order
+from src.models.orders import Order, OrderItem
+from src.models.product import Item
 from django.views.generic import View
 from django.utils import timezone
 # Create your views here.
@@ -38,12 +39,12 @@ def add_to_cart(request, slug):
         order = order_qs[0]
         if order.items.filter(item__slug=slug).exists():
             messages.info(request, "This item is already in your cart.")
-            return redirect("products:Product", slug=slug)
+            return redirect("ecommerce:Product", slug=slug)
         else:
             order.items.add(order_item)
             order_item.quantity = 1
             messages.success(request, "This item was added to your cart.")
-            return redirect("products:Product", slug=slug)
+            return redirect("ecommerce:Product", slug=slug)
     else:
         ordered_date = timezone.now()
         order = Order.objects.create(
@@ -51,7 +52,7 @@ def add_to_cart(request, slug):
         order.items.add(order_item)
         order_item.save()
         messages.success(request, "This item was added to your cart.")
-        return redirect("products:Product", slug=slug)
+        return redirect("ecommerce:Product", slug=slug)
 
 
 @login_required
@@ -69,16 +70,16 @@ def remove_from_cart(request, slug):
             if 'order-summary' in get_current_page_url:
                 messages.info(
                     request, f"The item {order_item.item.title} was removed from your cart.")
-                return redirect("orders:order-summary")
+                return redirect("ecommerce:order-summary")
             else:
                 messages.info(request, "This item was removed from your cart.")
-                return redirect("products:Product", slug=slug)
+                return redirect("ecommerce:Product", slug=slug)
         else:
             messages.info(request, "This item is not in your cart.")
-            return redirect("products:Product", slug=slug)
+            return redirect("ecommerce:Product", slug=slug)
     else:
         messages.warning(request, "You do not have an active order.")
-        return redirect("products:Product", slug=slug)
+        return redirect("ecommerce:Product", slug=slug)
 
 
 @login_required
@@ -93,15 +94,15 @@ def add_quantity_in_cart(request, slug):
             order_item.save()
             messages.info(
                 request, f"{order_item.item.title} quantity was updated.")
-            return redirect("orders:order-summary")
+            return redirect("ecommerce:order-summary")
         else:
             messages.warning(
                 request, "Maximum per item quantity limit reached")
-            return redirect("orders:order-summary")
+            return redirect("ecommerce:order-summary")
     else:
         messages.info(
             request, f"You don't have this item in your cart")
-        return redirect("orders:order-summary")
+        return redirect("ecommerce:order-summary")
 
 
 @login_required
@@ -115,7 +116,7 @@ def remove_quantity_from_cart(request, slug):
         order_item.save()
         messages.info(
             request, f"{order_item.item.title} quantity was updated.")
-        return redirect("orders:order-summary")
+        return redirect("ecommerce:order-summary")
     else:
         messages.warning(request, "Item quantity cannot be zero.")
-        return redirect("orders:order-summary")
+        return redirect("ecommerce:order-summary")

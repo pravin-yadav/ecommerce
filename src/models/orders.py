@@ -1,6 +1,6 @@
 from django.db import models
 from django.conf import settings
-from products.models import Item
+from src.models.product import Item
 
 # Create your models here.
 

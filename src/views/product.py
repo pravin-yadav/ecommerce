@@ -1,13 +1,13 @@
 from django.views.generic import ListView, DetailView
 from django.core.paginator import Paginator
-from .models import Item
+from src.models.product import Item
 
 # Create your views here.
 
 
 class HomeView(ListView):
     model = Item
-    paginate_by = 6
+    paginate_by = 4
     template_name = 'home.html'
 
     def get_context_data(self, **kwargs):

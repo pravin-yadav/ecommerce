@@ -27,7 +27,7 @@
             <ul class="navbar-nav nav-flex-icons">
                 {% if request.user.is_authenticated %}
                 <li class="nav-item">
-                    <a href={% url 'orders:order-summary' %} target="" class="nav-link waves-effect">
+                    <a href={% url 'ecommerce:order-summary' %} target="" class="nav-link waves-effect">
                         <i class="fas fa-shopping-cart"></i>
                         <span class="d-sm-inline-block"> Cart </span>
                         <span style="vertical-align: super" class="badge red z-depth-1"> {{ request.user|cart_item_count }} </span>
